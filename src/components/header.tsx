@@ -1,59 +1,172 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { navigation, profile } from "@/data/profile";
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isCompact, setIsCompact] = useState(false);
+  const [isOverDark, setIsOverDark] = useState(false);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    lastScrollY.current = window.scrollY;
+
+    const updateDarkState = (scrollY: number) => {
+      const hero = document.getElementById("top");
+
+      if (!hero) {
+        setIsOverDark(scrollY > window.innerHeight * 0.55);
+        return;
+      }
+
+      const rect = hero.getBoundingClientRect();
+      const scrollableDistance = hero.offsetHeight - window.innerHeight;
+      const heroProgress = Math.min(
+        Math.max(-rect.top / scrollableDistance, 0),
+        1,
+      );
+
+      setIsOverDark(heroProgress > 0.16 && heroProgress < 0.86);
+    };
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const delta = currentScrollY - lastScrollY.current;
+
+      updateDarkState(currentScrollY);
+
+      if (Math.abs(delta) < 8) {
+        return;
+      }
+
+      if (currentScrollY < 60 || delta < 0) {
+        setIsCompact(false);
+      } else if (delta > 0) {
+        setIsCompact(true);
+        setIsOpen(false);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    const handleResize = () => updateDarkState(window.scrollY);
+
+    updateDarkState(window.scrollY);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const showCompact = isCompact && !isOpen;
+  const expandedOnDark = isOverDark && !showCompact;
+  const expandedShellClass = expandedOnDark
+    ? "max-w-md border-white/18 bg-ink/88 px-2 text-paper md:max-w-lg"
+    : "max-w-md border-line/70 bg-white/88 px-2 text-ink md:max-w-lg";
+  const homeBadgeClass = expandedOnDark
+    ? "bg-paper text-ink"
+    : "bg-ink text-paper";
+  const navLinkClass = expandedOnDark
+    ? "text-paper/70 hover:bg-white/10 hover:text-paper"
+    : "text-graphite/70 hover:bg-mist hover:text-ink";
+  const resumeClass = expandedOnDark
+    ? "bg-paper text-ink hover:bg-paper/86"
+    : "bg-ink text-paper hover:bg-graphite";
 
   return (
     <header className="fixed left-0 right-0 top-5 z-50 px-4">
-      <nav className="mx-auto flex max-w-md items-center justify-between rounded-full border border-line/70 bg-white/88 px-2 py-2 text-ink shadow-card backdrop-blur-xl md:max-w-lg">
-        <a
-          href="#top"
-          className="flex h-8 w-8 items-center justify-center rounded-full bg-ink text-[0.68rem] font-bold tracking-[-0.08em] text-paper"
-          aria-label="Back to home"
+      <nav
+        className={`relative mx-auto flex h-12 items-center overflow-hidden rounded-full border shadow-card backdrop-blur-xl transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${
+          showCompact
+            ? "max-w-[18rem] border-ink/10 bg-ink px-3 text-paper"
+            : expandedShellClass
+        }`}
+      >
+        <div
+          className={`absolute inset-0 flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] ${
+            showCompact
+              ? "pointer-events-auto translate-y-0 scale-100 opacity-100 delay-150"
+              : "pointer-events-none translate-y-2 scale-95 opacity-0"
+          }`}
         >
-          HH
-        </a>
-
-        <div className="hidden items-center gap-1 md:flex">
-          {navigation.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="rounded-full px-3 py-1.5 text-xs font-medium text-graphite/70 transition hover:bg-mist hover:text-ink"
-            >
-              {item.label}
-            </a>
-          ))}
+          <a
+            href="#top"
+            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-[0.68rem] font-bold tracking-[-0.08em] text-ink"
+            aria-label="Back to home"
+          >
+            HH
+          </a>
+          <div className="ml-3 flex items-center gap-2 whitespace-nowrap">
+            <span className="text-sm font-medium">Available for work</span>
+            <span className="h-2 w-2 rounded-full bg-violet" />
+          </div>
         </div>
 
-        <a
-          href={profile.links.resume}
-          className="hidden rounded-full bg-ink px-3.5 py-1.5 text-xs font-semibold text-paper transition hover:bg-graphite md:block"
+        <div
+          className={`flex w-full items-center justify-between transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] ${
+            showCompact
+              ? "pointer-events-none -translate-y-2 scale-95 opacity-0"
+              : "pointer-events-auto translate-y-0 scale-100 opacity-100 delay-150"
+          }`}
         >
-          Resume
-        </a>
+          <a
+            href="#top"
+            className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-[0.68rem] font-bold tracking-[-0.08em] transition-colors ${homeBadgeClass}`}
+            aria-label="Back to home"
+          >
+            HH
+          </a>
 
-        <button
-          type="button"
-          className="flex h-8 w-8 items-center justify-center rounded-full bg-violet text-paper md:hidden"
-          onClick={() => setIsOpen((value) => !value)}
-          aria-expanded={isOpen}
-          aria-label="Open navigation menu"
-        >
-          <span className="text-lg">{isOpen ? "×" : "☰"}</span>
-        </button>
+          <div className="hidden items-center gap-1 md:flex">
+            {navigation.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className={`rounded-full px-3 py-1.5 text-xs font-medium transition ${navLinkClass}`}
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
+
+          <a
+            href={profile.links.resume}
+            className={`hidden rounded-full px-3.5 py-1.5 text-xs font-semibold transition md:block ${resumeClass}`}
+          >
+            Resume
+          </a>
+
+          <button
+            type="button"
+            className="flex h-8 w-8 items-center justify-center rounded-full bg-violet text-ink md:hidden"
+            onClick={() => setIsOpen((value) => !value)}
+            aria-expanded={isOpen}
+            aria-label="Open navigation menu"
+          >
+            <span className="text-lg leading-none">{isOpen ? "×" : "☰"}</span>
+          </button>
+        </div>
       </nav>
 
       {isOpen ? (
-        <div className="mx-auto mt-3 max-w-md rounded-[1.5rem] border border-line bg-white/95 p-2 text-ink shadow-float backdrop-blur-xl md:hidden">
+        <div
+          className={`mx-auto mt-3 max-w-md rounded-[1.5rem] border p-2 shadow-float backdrop-blur-xl md:hidden ${
+            isOverDark
+              ? "border-white/16 bg-ink/92 text-paper"
+              : "border-line bg-white/95 text-ink"
+          }`}
+        >
           {navigation.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="block rounded-2xl px-4 py-3 text-sm text-graphite/75"
+              className={`block rounded-2xl px-4 py-3 text-sm ${
+                isOverDark ? "text-paper/76" : "text-graphite/75"
+              }`}
               onClick={() => setIsOpen(false)}
             >
               {item.label}
@@ -61,7 +174,7 @@ export function Header() {
           ))}
           <a
             href={profile.links.resume}
-            className="mt-2 block rounded-2xl bg-violet px-4 py-3 text-center text-sm font-semibold text-paper"
+            className="mt-2 block rounded-2xl bg-violet px-4 py-3 text-center text-sm font-semibold text-ink"
             onClick={() => setIsOpen(false)}
           >
             Resume
