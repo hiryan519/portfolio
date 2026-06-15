@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: "Inter", sans-serif;
+  --font-display: "Antonio", sans-serif;
+  color: #151515;
+  background: #f8f8f6;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #f8f8f6;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: #151515;
+  color: #f8f8f6;
+}
+
+a {
+  text-decoration: none;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.page-shell {
+  width: min(100% - 32px, 1080px);
+  margin-inline: auto;
+}
+
+.tight-title {
+  font-family: var(--font-display);
+  font-stretch: normal;
+  letter-spacing: -0.09em;
+}
+
+.framer-shadow {
+  box-shadow: 0 20px 60px rgba(20, 20, 20, 0.1);
+}
+
+.portrait-card {
+  background:
+    radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.6), transparent 7rem),
+    linear-gradient(150deg, #cfcfc9, #a9aaa6);
+}
+
+.project-visual {
+  background:
+    radial-gradient(circle at 50% 45%, rgba(255, 255, 255, 0.18), transparent 8rem),
+    linear-gradient(145deg, #b9b9b6, #8f908d);
+}
+
+.avatar-abstract {
+  background:
+    radial-gradient(circle at 52% 22%, #2b2b2b 0 2.1rem, transparent 2.2rem),
+    linear-gradient(90deg, transparent 0 32%, #202020 32% 68%, transparent 68%),
+    linear-gradient(150deg, #d5d4ce, #a4a6a2);
+}
+
+.wave-badge-hand {
+  filter: brightness(0) saturate(100%);
+}
+
+.wave-badge-track {
+  animation: wave-badge-roll 5.8s cubic-bezier(0.76, 0, 0.24, 1) infinite;
+}
+
+@keyframes wave-badge-roll {
+  0%,
+  58% {
+    transform: translateY(0);
+  }
+
+  68%,
+  88% {
+    transform: translateY(-50%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .page-shell {
+    width: min(100% - 24px, 1080px);
+  }
+}
