@@ -13,6 +13,7 @@ import { i18n, type Content, type Locale } from "@/data/i18n";
 type LanguageContextValue = {
   locale: Locale;
   content: Content;
+  setLocale: (locale: Locale) => void;
   toggleLocale: () => void;
 };
 
@@ -30,6 +31,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     () => ({
       locale,
       content: i18n[locale],
+      setLocale,
       toggleLocale: () => setLocale((current) => (current === "en" ? "zh" : "en")),
     }),
     [locale],

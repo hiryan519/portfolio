@@ -9,7 +9,7 @@ export function ContactSection() {
   return (
     <section id="contact" className="page-shell py-24">
       <div className="grid items-start gap-8 md:grid-cols-[0.55fr_1fr]">
-        <div className="relative mx-auto h-80 w-64 overflow-visible rounded-2xl md:mx-0 md:mt-8 md:h-[30rem] md:w-[23rem]">
+        <div className="relative mx-auto h-80 w-64 overflow-visible rounded-2xl md:mx-0 md:mt-8 md:h-[25rem] md:w-[19.2rem]">
           <div className="portrait-card framer-shadow absolute inset-0 overflow-hidden rounded-2xl">
             <div className="avatar-abstract absolute inset-x-8 bottom-0 h-[82%] rounded-t-[4rem]" />
           </div>

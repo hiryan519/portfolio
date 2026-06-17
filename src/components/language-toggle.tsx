@@ -1,18 +1,34 @@
 ﻿"use client";
 
 import { useLanguage } from "./language-provider";
+import type { Locale } from "@/data/i18n";
 
 export function LanguageToggle() {
-  const { content, toggleLocale } = useLanguage();
+  const { content, locale, setLocale } = useLanguage();
+  const options: Array<{ label: string; value: Locale }> = [
+    { label: "EN", value: "en" },
+    { label: "ZH", value: "zh" },
+  ];
 
   return (
-    <button
-      type="button"
+    <div
       aria-label={content.language.label}
-      onClick={toggleLocale}
-      className="fixed right-5 top-5 z-[60] rounded-full border border-line/70 bg-white/88 px-4 py-3 text-xs font-black uppercase tracking-[-0.04em] text-ink shadow-card backdrop-blur-xl transition hover:bg-ink hover:text-paper"
+      className="fixed right-5 top-5 z-[60] flex rounded-full border border-line/70 bg-white/88 p-1 text-xs font-black uppercase tracking-[-0.04em] text-ink shadow-card backdrop-blur-xl"
     >
-      {content.language.toggle}
-    </button>
+      {options.map((option) => (
+        <button
+          key={option.value}
+          type="button"
+          onClick={() => setLocale(option.value)}
+          className={`rounded-full px-3 py-2 transition ${
+            locale === option.value
+              ? "bg-ink text-paper"
+              : "text-graphite/58 hover:bg-mist hover:text-ink"
+          }`}
+        >
+          {option.label}
+        </button>
+      ))}
+    </div>
   );
 }

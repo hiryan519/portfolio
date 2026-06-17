@@ -108,7 +108,7 @@ export function Header() {
         </div>
 
         <div
-          className={`flex w-full items-center justify-between transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] ${
+          className={`flex w-full items-center gap-3 transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] ${
             showCompact
               ? "pointer-events-none -translate-y-2 scale-95 opacity-0"
               : "pointer-events-auto translate-y-0 scale-100 opacity-100 delay-150"
@@ -122,12 +122,12 @@ export function Header() {
             HH
           </a>
 
-          <div className="hidden items-center gap-1 md:flex">
+          <div className="hidden flex-1 items-center justify-evenly md:flex">
             {content.nav.items.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className={`rounded-full px-3 py-1.5 text-xs font-medium transition ${navLinkClass}`}
+                className={`rounded-full px-2.5 py-1.5 text-xs font-medium transition ${navLinkClass}`}
               >
                 {item.label}
               </a>
