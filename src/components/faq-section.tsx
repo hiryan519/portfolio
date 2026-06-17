@@ -1,26 +1,29 @@
 "use client";
 
 import { useState } from "react";
-import { faq } from "@/data/profile";
+import { useLanguage } from "./language-provider";
 
 export function FaqSection() {
+  const { content } = useLanguage();
   const [openIndex, setOpenIndex] = useState(-1);
 
   return (
     <section className="page-shell grid gap-12 py-28 md:grid-cols-[0.82fr_1.18fr] md:items-start">
       <div className="md:sticky md:top-28">
         <h2 className="tight-title text-[clamp(2.55rem,4.25vw,4.35rem)] font-black uppercase leading-[0.96] text-ink">
-          <span className="block">Frequently asked</span>
-          <span className="block">questions</span>
+          {content.faqIntro.titleLines.map((line) => (
+            <span key={line} className="block">
+              {line}
+            </span>
+          ))}
         </h2>
         <p className="mt-7 max-w-md text-lg leading-8 text-graphite/68">
-          A quick overview of how I think about AI product work, what this
-          portfolio demonstrates, and where interviewers can start.
+          {content.faqIntro.description}
         </p>
       </div>
 
       <div className="divide-y divide-line border-y border-line">
-        {faq.map((item, index) => {
+        {content.faq.map((item, index) => {
           const isOpen = openIndex === index;
 
           return (

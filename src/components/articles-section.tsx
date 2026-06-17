@@ -1,20 +1,23 @@
-import { articles } from "@/data/profile";
+﻿"use client";
+
+import { useLanguage } from "./language-provider";
 
 export function ArticlesSection() {
+  const { content } = useLanguage();
+
   return (
     <section id="thinking" className="page-shell py-24">
       <div>
         <h2 className="tight-title text-[clamp(2.55rem,4.25vw,4.35rem)] font-black uppercase leading-[0.96] text-ink">
-          Product thinking
+          {content.articlesIntro.title}
         </h2>
         <p className="mt-7 max-w-2xl text-lg leading-8 text-graphite/68">
-          A reserved area for future essays on AI product reviews, methods, and
-          reflections.
+          {content.articlesIntro.description}
         </p>
       </div>
 
       <div className="mt-14 grid gap-8 md:grid-cols-2">
-        {articles.map((article) => (
+        {content.articles.map((article) => (
           <article key={article.title} className="border-t border-line pt-8">
             <p className="mb-5 text-sm font-semibold text-violet">
               {article.date}

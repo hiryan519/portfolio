@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { projects } from "@/data/profile";
 import { SectionKicker } from "./section-kicker";
+import { useLanguage } from "./language-provider";
+import type { Project } from "@/data/i18n";
 
 function clamp(value: number, min = 0, max = 1) {
   return Math.min(Math.max(value, min), max);
@@ -11,7 +12,7 @@ function clamp(value: number, min = 0, max = 1) {
 function ProjectStackCard({
   project,
 }: {
-  project: (typeof projects)[number];
+  project: Project;
 }) {
   return (
     <article className="overflow-hidden rounded-[1.65rem] bg-paper text-ink">
@@ -82,15 +83,17 @@ function ProjectStackCard({
 }
 
 function StaticProjects() {
+  const { content } = useLanguage();
+
   return (
     <section id="projects" className="page-shell py-28">
       <SectionKicker
-        label="Featured projects"
-        title="AI product projects"
-        description="These projects show how I understand RAG, Agents, Prompt design, AI product evaluation, and product loops through real practice."
+        label={content.projectsIntro.eyebrow}
+        title={content.projectsIntro.title}
+        description={content.projectsIntro.description}
       />
       <div className="grid gap-12">
-        {projects.map((project) => (
+        {content.projects.map((project) => (
           <ProjectStackCard key={project.id} project={project} />
         ))}
       </div>
@@ -99,6 +102,7 @@ function StaticProjects() {
 }
 
 export function ProjectsSection() {
+  const { content } = useLanguage();
   const sectionRef = useRef<HTMLElement>(null);
   const [progress, setProgress] = useState(0);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
@@ -187,14 +191,13 @@ export function ProjectsSection() {
               }}
             >
               <p className="mb-3 text-[0.68rem] font-bold uppercase tracking-[-0.04em] text-graphite/60">
-                Featured projects
+                {content.projectsIntro.eyebrow}
               </p>
               <h2 className="tight-title text-[clamp(4rem,7vw,7rem)] font-black uppercase leading-[0.9] text-ink">
-                AI product projects
+                {content.projectsIntro.title}
               </h2>
               <p className="mt-5 max-w-2xl text-lg leading-8 text-graphite/60">
-                These projects show how I understand RAG, Agents, Prompt design,
-                AI product evaluation, and product loops through real practice.
+                {content.projectsIntro.description}
               </p>
             </div>
           </div>
@@ -209,7 +212,7 @@ export function ProjectsSection() {
                 zIndex: 10,
               }}
             >
-              <ProjectStackCard project={projects[0]} />
+              <ProjectStackCard project={content.projects[0]} />
             </div>
 
             <div
@@ -221,7 +224,7 @@ export function ProjectsSection() {
                 zIndex: 20,
               }}
             >
-              <ProjectStackCard project={projects[1]} />
+              <ProjectStackCard project={content.projects[1]} />
             </div>
           </div>
         </div>

@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { navigation, profile } from "@/data/profile";
+import { useLanguage } from "./language-provider";
 
 export function Header() {
+  const { content } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [isCompact, setIsCompact] = useState(false);
   const [isOverDark, setIsOverDark] = useState(false);
@@ -96,12 +97,12 @@ export function Header() {
           <a
             href="#top"
             className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-[0.68rem] font-bold tracking-[-0.08em] text-ink"
-            aria-label="Back to home"
+            aria-label={content.nav.backHome}
           >
             HH
           </a>
           <div className="ml-3 flex items-center gap-2 whitespace-nowrap">
-            <span className="text-sm font-medium">Available for work</span>
+            <span className="text-sm font-medium">{content.nav.available}</span>
             <span className="h-2 w-2 rounded-full bg-violet" />
           </div>
         </div>
@@ -116,13 +117,13 @@ export function Header() {
           <a
             href="#top"
             className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-[0.68rem] font-bold tracking-[-0.08em] transition-colors ${homeBadgeClass}`}
-            aria-label="Back to home"
+            aria-label={content.nav.backHome}
           >
             HH
           </a>
 
           <div className="hidden items-center gap-1 md:flex">
-            {navigation.map((item) => (
+            {content.nav.items.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
@@ -134,10 +135,10 @@ export function Header() {
           </div>
 
           <a
-            href={profile.links.resume}
+            href={content.profile.links.resume}
             className={`hidden rounded-full px-3.5 py-1.5 text-xs font-semibold transition md:block ${resumeClass}`}
           >
-            Resume
+            {content.nav.resume}
           </a>
 
           <button
@@ -145,7 +146,7 @@ export function Header() {
             className="flex h-8 w-8 items-center justify-center rounded-full bg-violet text-ink md:hidden"
             onClick={() => setIsOpen((value) => !value)}
             aria-expanded={isOpen}
-            aria-label="Open navigation menu"
+            aria-label={content.nav.openMenu}
           >
             <span className="text-lg leading-none">{isOpen ? "×" : "☰"}</span>
           </button>
@@ -160,7 +161,7 @@ export function Header() {
               : "border-line bg-white/95 text-ink"
           }`}
         >
-          {navigation.map((item) => (
+          {content.nav.items.map((item) => (
             <a
               key={item.href}
               href={item.href}
@@ -173,11 +174,11 @@ export function Header() {
             </a>
           ))}
           <a
-            href={profile.links.resume}
+            href={content.profile.links.resume}
             className="mt-2 block rounded-2xl bg-violet px-4 py-3 text-center text-sm font-semibold text-ink"
             onClick={() => setIsOpen(false)}
           >
-            Resume
+            {content.nav.resume}
           </a>
         </div>
       ) : null}

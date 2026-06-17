@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Antonio, Inter } from "next/font/google";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Hiryan Hang — AI Product Manager Portfolio",
+  title: "Hiryan Hang 鈥?AI Product Manager Portfolio",
   description:
     "A one-page portfolio showcasing AI product management projects, RAG workflows, Agent design, product thinking, and prototype practice.",
 };
@@ -31,3 +31,4 @@ export default function RootLayout({
     </html>
   );
 }
+

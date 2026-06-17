@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { profile, services, stats } from "@/data/profile";
+import { useLanguage } from "./language-provider";
 import { WaveBadge } from "./wave-badge";
 
 function clamp(value: number, min: number, max: number) {
@@ -9,6 +9,7 @@ function clamp(value: number, min: number, max: number) {
 }
 
 export function Hero() {
+  const { content } = useLanguage();
   const sectionRef = useRef<HTMLElement>(null);
   const [progress, setProgress] = useState(0);
 
@@ -98,19 +99,20 @@ export function Hero() {
             }}
           >
             <p className="mb-4 text-sm font-medium text-paper/72">
-              What I can do for you
+              {content.servicesIntro.eyebrow}
             </p>
             <h2 className="tight-title text-[clamp(3rem,6.2vw,6.2rem)] font-black uppercase leading-[0.92]">
-              <span className="block">AI product</span>
-              <span className="block">capabilities</span>
+              {content.servicesIntro.titleLines.map((line) => (
+                <span key={line} className="block">
+                  {line}
+                </span>
+              ))}
             </h2>
             <p className="mt-6 max-w-xl text-lg leading-8 text-paper/78">
-              I break down AI scenarios from a product manager&apos;s
-              perspective, connecting capability design, prototype execution,
-              validation, and review in one loop.
+              {content.servicesIntro.description}
             </p>
             <div className="mt-12 divide-y divide-white/18 border-y border-white/18">
-              {services.map((service, index) => (
+              {content.services.map((service, index) => (
                 <div
                   key={service.title}
                   className="grid grid-cols-[1fr_auto] items-center gap-8 py-5"
@@ -132,10 +134,10 @@ export function Hero() {
             }}
           >
             <p className="mb-1 text-[0.8rem] font-bold uppercase tracking-[-0.04em] text-graphite/72 md:text-[1.65rem]">
-              Yichen Huang
+              {content.profile.displayName}
             </p>
             <h1 className="tight-title text-[clamp(3.2rem,10vw,8.6rem)] font-black uppercase leading-[0.78] text-ink">
-              Product
+              {content.profile.headlineLeft}
             </h1>
           </div>
 
@@ -146,7 +148,7 @@ export function Hero() {
               opacity: introOpacity,
             }}
           >
-            Manager
+            {content.profile.headlineRight}
           </h1>
 
           <div
@@ -164,7 +166,7 @@ export function Hero() {
             >
               <div className="avatar-abstract absolute inset-x-8 bottom-0 h-[80%] rounded-t-[4rem]" />
               <div className="absolute bottom-5 left-5 right-5 rounded-full bg-white/72 px-3 py-2 text-[0.65rem] font-semibold text-ink backdrop-blur">
-                AI Workflow / Product Loop
+                {content.hero.cardCaption}
               </div>
             </div>
             <div
@@ -203,14 +205,14 @@ export function Hero() {
           }}
         >
           <h2 className="tight-title text-[clamp(4rem,7vw,7rem)] font-black uppercase leading-[0.9]">
-            About me
+            {content.about.title}
           </h2>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-graphite/68">
-            {profile.about.join(" ")}
+            {content.profile.about.join(" ")}
           </p>
 
           <div className="mt-10 grid max-w-2xl grid-cols-3 gap-6">
-            {stats.map((stat) => (
+            {content.stats.map((stat) => (
               <div key={stat.label}>
                 <p className="tight-title text-5xl font-black text-violet md:text-6xl">
                   {stat.value}
@@ -232,11 +234,11 @@ export function Hero() {
           }}
         >
           <p className="mt-8 max-w-md text-sm leading-6 text-graphite/58 md:text-base">
-            {profile.intro}
+            {content.profile.intro}
           </p>
 
           <div className="mt-6 flex flex-wrap justify-center gap-2">
-            {profile.heroTags.map((tag) => (
+            {content.profile.heroTags.map((tag) => (
               <span
                 key={tag}
                 className="rounded-full border border-line bg-white px-3 py-1.5 text-xs font-medium text-graphite/62"

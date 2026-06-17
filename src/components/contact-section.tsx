@@ -1,7 +1,11 @@
-import { contactLinks, profile } from "@/data/profile";
+﻿"use client";
+
 import { WaveBadge } from "./wave-badge";
+import { useLanguage } from "./language-provider";
 
 export function ContactSection() {
+  const { content } = useLanguage();
+
   return (
     <section id="contact" className="page-shell py-24">
       <div className="grid items-start gap-8 md:grid-cols-[0.55fr_1fr]">
@@ -16,17 +20,17 @@ export function ContactSection() {
 
         <div>
           <p className="mb-3 text-[0.68rem] font-bold uppercase tracking-[-0.04em] text-graphite/60">
-            Let&apos;s work together
+            {content.contact.eyebrow}
           </p>
           <h2 className="tight-title text-5xl font-black uppercase leading-[0.85] text-ink">
-            Contact
+            {content.contact.title}
           </h2>
           <p className="mt-4 max-w-md text-sm leading-6 text-graphite/58">
-            If you want to learn more about my AI product projects, prototype thinking, or case reviews, feel free to reach out.
+            {content.contact.description}
           </p>
 
           <div className="mt-6 grid gap-2">
-            {contactLinks.map((link) => (
+            {content.contact.links.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
@@ -39,10 +43,10 @@ export function ContactSection() {
           </div>
 
           <a
-            href={profile.links.email}
+            href={content.profile.links.email}
             className="mt-4 block rounded-full bg-violet px-5 py-3 text-center text-sm font-bold text-ink hover:bg-ink hover:text-paper"
           >
-            Send email
+            {content.contact.action}
           </a>
         </div>
       </div>
