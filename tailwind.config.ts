@@ -15,7 +15,7 @@ const config: Config = {
         porcelain: "#ffffff",
         mist: "#eeeeeb",
         line: "#deded9",
-        violet: "rgb(208, 247, 130)",
+        violet: "rgb(208, 255, 113)",
         slate: "#9b9c98",
       },
       fontFamily: {

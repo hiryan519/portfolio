@@ -1,23 +1,28 @@
 import { articles } from "@/data/profile";
-import { SectionKicker } from "./section-kicker";
 
 export function ArticlesSection() {
   return (
     <section id="thinking" className="page-shell py-24">
-      <SectionKicker
-        label="Design insights & ideas"
-        title="Product thinking"
-        description="A reserved area for future essays on AI product reviews, methods, and reflections."
-      />
+      <div>
+        <h2 className="tight-title text-[clamp(2.55rem,4.25vw,4.35rem)] font-black uppercase leading-[0.96] text-ink">
+          Product thinking
+        </h2>
+        <p className="mt-7 max-w-2xl text-lg leading-8 text-graphite/68">
+          A reserved area for future essays on AI product reviews, methods, and
+          reflections.
+        </p>
+      </div>
 
-      <div className="mt-10 grid gap-5 md:grid-cols-2">
+      <div className="mt-14 grid gap-8 md:grid-cols-2">
         {articles.map((article) => (
-          <article key={article.title} className="border-t border-line pt-5">
-            <p className="mb-3 text-xs text-violet">{article.date}</p>
-            <h3 className="tight-title text-2xl font-black uppercase leading-[0.95] text-ink">
+          <article key={article.title} className="border-t border-line pt-8">
+            <p className="mb-5 text-sm font-semibold text-violet">
+              {article.date}
+            </p>
+            <h3 className="tight-title text-[clamp(1.25rem,1.8vw,2.05rem)] font-black uppercase leading-[1.05] text-ink [letter-spacing:normal] [word-spacing:0.16em]">
               {article.title}
             </h3>
-            <p className="mt-3 text-sm leading-6 text-graphite/58">
+            <p className="mt-5 text-lg leading-8 text-graphite/72">
               {article.description}
             </p>
           </article>

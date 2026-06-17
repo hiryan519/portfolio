@@ -1,13 +1,16 @@
 import { contactLinks, profile } from "@/data/profile";
+import { WaveBadge } from "./wave-badge";
 
 export function ContactSection() {
   return (
     <section id="contact" className="page-shell py-24">
-      <div className="grid items-end gap-8 md:grid-cols-[0.55fr_1fr]">
-        <div className="relative mx-auto h-72 w-56 overflow-hidden rounded-2xl portrait-card framer-shadow md:mx-0">
-          <div className="avatar-abstract absolute inset-x-8 bottom-0 h-[82%] rounded-t-[4rem]" />
-          <div className="absolute -left-4 bottom-10 flex h-12 w-12 items-center justify-center rounded-full bg-violet text-sm font-bold text-paper">
-            HH
+      <div className="grid items-start gap-8 md:grid-cols-[0.55fr_1fr]">
+        <div className="relative mx-auto h-80 w-64 overflow-visible rounded-2xl md:mx-0 md:mt-8 md:h-[30rem] md:w-[23rem]">
+          <div className="portrait-card framer-shadow absolute inset-0 overflow-hidden rounded-2xl">
+            <div className="avatar-abstract absolute inset-x-8 bottom-0 h-[82%] rounded-t-[4rem]" />
+          </div>
+          <div className="absolute -bottom-6 -left-7 grid h-16 w-16 place-items-center rounded-full bg-violet text-lg font-bold text-ink md:-bottom-8 md:-left-10 md:h-24 md:w-24 md:text-2xl">
+            <WaveBadge />
           </div>
         </div>
 
@@ -37,7 +40,7 @@ export function ContactSection() {
 
           <a
             href={profile.links.email}
-            className="mt-4 block rounded-full bg-violet px-5 py-3 text-center text-sm font-bold text-paper hover:bg-ink"
+            className="mt-4 block rounded-full bg-violet px-5 py-3 text-center text-sm font-bold text-ink hover:bg-ink hover:text-paper"
           >
             Send email
           </a>

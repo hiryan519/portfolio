@@ -1,7 +1,87 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import { projects } from "@/data/profile";
 import { SectionKicker } from "./section-kicker";
 
-export function ProjectsSection() {
+function clamp(value: number, min = 0, max = 1) {
+  return Math.min(Math.max(value, min), max);
+}
+
+function ProjectStackCard({
+  project,
+}: {
+  project: (typeof projects)[number];
+}) {
+  return (
+    <article className="overflow-hidden rounded-[1.65rem] bg-paper text-ink">
+      <div
+        className="project-visual relative grid h-[24rem] place-items-center overflow-hidden rounded-[1.25rem] md:h-[31rem]"
+      >
+        <div className="absolute inset-0 bg-black/10" />
+        <div className="relative max-w-lg px-8 text-center text-white">
+          <p className="mx-auto mb-4 w-fit rounded-full bg-violet px-3 py-1 text-[0.7rem] font-bold text-ink">
+            {project.category}
+          </p>
+          <h3 className="tight-title text-5xl font-black uppercase leading-[0.86] md:text-7xl">
+            {project.name}
+          </h3>
+          <p className="mx-auto mt-4 max-w-md text-sm font-medium leading-6 text-white/82">
+            {project.description}
+          </p>
+        </div>
+      </div>
+
+      <div className="grid gap-4 px-1 py-4 md:grid-cols-[1fr_auto] md:items-start">
+        <div>
+          <p className="text-sm font-semibold text-violet">{project.status}</p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {project.keywords.map((keyword) => (
+              <span
+                key={keyword}
+                className="rounded-full border border-line px-3 py-1 text-sm text-graphite/64"
+              >
+                {keyword}
+              </span>
+            ))}
+          </div>
+        </div>
+        <div className="flex gap-2">
+          <a
+            href={project.demoUrl}
+            className="rounded-full border border-line px-5 py-2.5 text-sm font-semibold text-ink hover:bg-white"
+          >
+            {project.secondaryAction}
+          </a>
+          <a
+            href={`#${project.id}-case`}
+            className="rounded-full bg-violet px-5 py-2.5 text-sm font-semibold text-ink hover:bg-ink hover:text-paper"
+          >
+            {project.primaryAction}
+          </a>
+        </div>
+      </div>
+
+      <div
+        id={`${project.id}-case`}
+        className="rounded-[1.25rem] border border-line bg-white p-5"
+      >
+        <div className="grid gap-4 md:grid-cols-3">
+          {project.caseStudy.slice(0, 6).map((item) => (
+            <div key={item.title}>
+              <h4 className="text-base font-bold text-ink">{item.title}</h4>
+              <p className="mt-2 text-sm leading-6 text-graphite/62">
+                {item.body}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function StaticProjects() {
   return (
     <section id="projects" className="page-shell py-28">
       <SectionKicker
@@ -9,74 +89,142 @@ export function ProjectsSection() {
         title="AI product projects"
         description="These projects show how I understand RAG, Agents, Prompt design, AI product evaluation, and product loops through real practice."
       />
-
-      <div className="mt-8 grid gap-12">
+      <div className="grid gap-12">
         {projects.map((project) => (
-          <article key={project.id} className="group">
-            <div className="project-visual relative grid h-[22rem] place-items-center overflow-hidden rounded-xl md:h-[29rem]">
-              <div className="absolute inset-0 bg-black/10 transition group-hover:bg-black/0" />
-              <div className="relative max-w-lg px-8 text-center text-white">
-                <p className="mx-auto mb-4 w-fit rounded-full bg-violet px-3 py-1 text-[0.65rem] font-bold">
-                  {project.category}
-                </p>
-                <h3 className="tight-title text-4xl font-black uppercase leading-[0.9] md:text-6xl">
-                  {project.name}
-                </h3>
-                <p className="mx-auto mt-4 max-w-sm text-xs leading-5 text-white/78">
-                  {project.description}
-                </p>
-              </div>
-            </div>
+          <ProjectStackCard key={project.id} project={project} />
+        ))}
+      </div>
+    </section>
+  );
+}
 
-            <div className="mt-4 grid gap-3 md:grid-cols-[1fr_auto] md:items-start">
-              <div>
-                <p className="text-xs font-semibold text-violet">
-                  {project.status}
-                </p>
-                <div className="mt-2 flex flex-wrap gap-2">
-                  {project.keywords.map((keyword) => (
-                    <span
-                      key={keyword}
-                      className="rounded-full border border-line px-3 py-1 text-xs text-graphite/58"
-                    >
-                      {keyword}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              <div className="flex gap-2">
-                <a
-                  href={project.demoUrl}
-                  className="rounded-full border border-line px-4 py-2 text-xs font-semibold text-ink hover:bg-white"
-                >
-                  View Demo
-                </a>
-                <a
-                  href={`#${project.id}-case`}
-                  className="rounded-full bg-violet px-4 py-2 text-xs font-semibold text-paper hover:bg-ink"
-                >
-                  View Case
-                </a>
-              </div>
+export function ProjectsSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [progress, setProgress] = useState(0);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updateReducedMotion = () =>
+      setPrefersReducedMotion(mediaQuery.matches);
+
+    updateReducedMotion();
+    mediaQuery.addEventListener("change", updateReducedMotion);
+
+    return () => {
+      mediaQuery.removeEventListener("change", updateReducedMotion);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (prefersReducedMotion) {
+      return;
+    }
+
+    let frameId = 0;
+
+    const updateProgress = () => {
+      if (!sectionRef.current) {
+        return;
+      }
+
+      const rect = sectionRef.current.getBoundingClientRect();
+      const scrollableDistance =
+        sectionRef.current.offsetHeight - window.innerHeight;
+      setProgress(clamp(-rect.top / scrollableDistance));
+    };
+
+    const handleScroll = () => {
+      cancelAnimationFrame(frameId);
+      frameId = requestAnimationFrame(updateProgress);
+    };
+
+    updateProgress();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", updateProgress);
+
+    return () => {
+      cancelAnimationFrame(frameId);
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", updateProgress);
+    };
+  }, [prefersReducedMotion]);
+
+  if (prefersReducedMotion) {
+    return <StaticProjects />;
+  }
+
+  const headingExit = clamp((progress - 0.06) / 0.18);
+  const firstEnter = clamp((progress - 0.06) / 0.24);
+  const secondRise = clamp((progress - 0.48) / 0.24);
+  const secondCover = clamp((progress - 0.68) / 0.28);
+
+  const headingY = -340 * headingExit;
+  const headingOpacity = 1 - headingExit;
+
+  const firstY = 340 * (1 - firstEnter) - secondRise * 92 - secondCover * 185;
+  const firstScale = 0.96 - secondRise * 0.05 - secondCover * 0.17;
+  const firstOpacity = 1 - secondCover * 0.4;
+
+  const secondY = 760 - secondRise * 530 - secondCover * 230;
+  const secondScale = 0.98 + secondCover * 0.03;
+  const secondOpacity = clamp((progress - 0.42) / 0.08);
+
+  return (
+    <section
+      ref={sectionRef}
+      id="projects"
+      className="relative -mt-20 h-[470vh] bg-paper text-ink"
+    >
+      <div className="sticky top-0 min-h-screen overflow-hidden">
+        <div className="relative min-h-screen pt-16">
+          <div className="page-shell">
+            <div
+              className="max-w-5xl will-change-transform"
+              style={{
+                opacity: headingOpacity,
+                transform: `translate3d(0, ${headingY}px, 0)`,
+              }}
+            >
+              <p className="mb-3 text-[0.68rem] font-bold uppercase tracking-[-0.04em] text-graphite/60">
+                Featured projects
+              </p>
+              <h2 className="tight-title text-[clamp(4rem,7vw,7rem)] font-black uppercase leading-[0.9] text-ink">
+                AI product projects
+              </h2>
+              <p className="mt-5 max-w-2xl text-lg leading-8 text-graphite/60">
+                These projects show how I understand RAG, Agents, Prompt design,
+                AI product evaluation, and product loops through real practice.
+              </p>
+            </div>
+          </div>
+
+          <div className="pointer-events-none absolute left-1/2 top-1/2 w-[min(calc(100vw-2rem),1080px)] -translate-x-1/2 -translate-y-1/2">
+            <div
+              className="absolute inset-x-0 top-1/2 will-change-transform"
+              style={{
+                opacity: firstOpacity,
+                transform: `translate3d(0, calc(-50% + ${firstY}px), 0) scale(${firstScale})`,
+                transformOrigin: "center center",
+                zIndex: 10,
+              }}
+            >
+              <ProjectStackCard project={projects[0]} />
             </div>
 
             <div
-              id={`${project.id}-case`}
-              className="mt-4 rounded-xl border border-line bg-white p-5"
+              className="absolute inset-x-0 top-1/2 will-change-transform"
+              style={{
+                opacity: secondOpacity,
+                transform: `translate3d(0, calc(-50% + ${secondY}px), 0) scale(${secondScale})`,
+                transformOrigin: "center center",
+                zIndex: 20,
+              }}
             >
-              <div className="grid gap-4 md:grid-cols-3">
-                {project.caseStudy.slice(0, 6).map((item) => (
-                  <div key={item.title}>
-                    <h4 className="text-sm font-bold text-ink">{item.title}</h4>
-                    <p className="mt-2 text-xs leading-5 text-graphite/58">
-                      {item.body}
-                    </p>
-                  </div>
-                ))}
-              </div>
+              <ProjectStackCard project={projects[1]} />
             </div>
-          </article>
-        ))}
+          </div>
+        </div>
       </div>
     </section>
   );

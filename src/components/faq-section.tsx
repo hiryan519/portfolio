@@ -2,36 +2,72 @@
 
 import { useState } from "react";
 import { faq } from "@/data/profile";
-import { SectionKicker } from "./section-kicker";
 
 export function FaqSection() {
-  const [openIndex, setOpenIndex] = useState(0);
+  const [openIndex, setOpenIndex] = useState(-1);
 
   return (
-    <section className="page-shell grid gap-8 py-24 md:grid-cols-[0.8fr_1.2fr]">
-      <SectionKicker label="Frequently asked questions" title="Frequently asked questions" />
+    <section className="page-shell grid gap-12 py-28 md:grid-cols-[0.82fr_1.18fr] md:items-start">
+      <div className="md:sticky md:top-28">
+        <h2 className="tight-title text-[clamp(2.55rem,4.25vw,4.35rem)] font-black uppercase leading-[0.96] text-ink">
+          <span className="block">Frequently asked</span>
+          <span className="block">questions</span>
+        </h2>
+        <p className="mt-7 max-w-md text-lg leading-8 text-graphite/68">
+          A quick overview of how I think about AI product work, what this
+          portfolio demonstrates, and where interviewers can start.
+        </p>
+      </div>
+
       <div className="divide-y divide-line border-y border-line">
-        {faq.map((item, index) => (
-          <div key={item.question}>
-            <button
-              type="button"
-              className="flex w-full items-center justify-between gap-4 py-4 text-left"
-              onClick={() => setOpenIndex(openIndex === index ? -1 : index)}
+        {faq.map((item, index) => {
+          const isOpen = openIndex === index;
+
+          return (
+            <div
+              key={item.question}
+              className={`-mx-5 rounded-[1.25rem] px-5 transition-colors duration-300 ${
+                isOpen ? "bg-graphite/[0.09]" : "bg-transparent"
+              }`}
             >
-              <span className="text-sm font-bold text-ink">
-                {index + 1}. {item.question}
-              </span>
-              <span className="text-graphite/60">
-                {openIndex === index ? "−" : "+"}
-              </span>
-            </button>
-            {openIndex === index ? (
-              <p className="pb-5 text-sm leading-6 text-graphite/58">
-                {item.answer}
-              </p>
-            ) : null}
-          </div>
-        ))}
+              <button
+                type="button"
+                aria-expanded={isOpen}
+                className="group flex w-full items-start justify-between gap-6 py-8 text-left"
+                onClick={() => setOpenIndex(isOpen ? -1 : index)}
+              >
+                <span
+                  className={`tight-title text-[clamp(1.25rem,1.8vw,2.05rem)] font-black uppercase leading-[1.05] transition-colors duration-300 [letter-spacing:normal] [word-spacing:0.16em] ${
+                    isOpen ? "text-violet" : "text-ink group-hover:text-ink/72"
+                  }`}
+                >
+                  {index + 1}. {item.question}
+                </span>
+                <span
+                  className={`mt-1 text-3xl leading-none transition-transform duration-300 ${
+                    isOpen ? "rotate-180 text-violet" : "text-ink"
+                  }`}
+                >
+                  ^
+                </span>
+              </button>
+
+              <div
+                className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out ${
+                  isOpen
+                    ? "grid-rows-[1fr] opacity-100"
+                    : "grid-rows-[0fr] opacity-0"
+                }`}
+              >
+                <div className="overflow-hidden">
+                  <p className="max-w-3xl pb-8 text-lg leading-8 text-graphite/72">
+                    {item.answer}
+                  </p>
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </section>
   );
