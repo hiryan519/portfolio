@@ -23,6 +23,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     document.documentElement.lang = locale === "zh" ? "zh-CN" : "en";
+    document.documentElement.dataset.locale = locale;
   }, [locale]);
 
   const value = useMemo<LanguageContextValue>(

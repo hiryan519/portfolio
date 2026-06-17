@@ -2,9 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Chill Jinshu Song Compact";
+  src: url("/fonts/ChillJinshuSong_CompactRegular.otf") format("opentype");
+  font-display: swap;
+  font-weight: 400 900;
+}
+
 :root {
   --font-sans: "Inter", sans-serif;
   --font-display: "Antonio", sans-serif;
+  --font-zh-display: "Chill Jinshu Song Compact", serif;
   color: #151515;
   background: #f8f8f6;
 }
@@ -43,6 +51,11 @@ a {
   font-family: var(--font-display);
   font-stretch: normal;
   letter-spacing: -0.09em;
+}
+
+:root[data-locale="zh"] .tight-title {
+  font-family: var(--font-zh-display), var(--font-sans);
+  letter-spacing: -0.02em;
 }
 
 .framer-shadow {
