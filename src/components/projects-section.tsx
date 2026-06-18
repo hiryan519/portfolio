@@ -14,6 +14,8 @@ function ProjectStackCard({
 }: {
   project: Project;
 }) {
+  const isDenseCase = project.caseStudy.some((item) => item.body.length > 220);
+
   return (
     <article className="overflow-hidden rounded-[1.65rem] bg-paper text-ink">
       <div
@@ -65,13 +67,33 @@ function ProjectStackCard({
 
       <div
         id={`${project.id}-case`}
-        className="rounded-[1.25rem] border border-line bg-white p-5"
+        className={`rounded-[1.25rem] border border-line bg-white ${
+          isDenseCase ? "p-4" : "p-5"
+        }`}
       >
-        <div className="grid gap-4 md:grid-cols-3">
+        <div
+          className={`grid md:grid-cols-3 ${
+            isDenseCase ? "gap-x-5 gap-y-3" : "gap-4"
+          }`}
+        >
           {project.caseStudy.slice(0, 6).map((item) => (
             <div key={item.title}>
-              <h4 className="text-base font-bold text-ink">{item.title}</h4>
-              <p className="mt-2 text-sm leading-6 text-graphite/62">
+              <h4
+                className={
+                  isDenseCase
+                    ? "text-[0.95rem] font-bold text-ink"
+                    : "text-base font-bold text-ink"
+                }
+              >
+                {item.title}
+              </h4>
+              <p
+                className={
+                  isDenseCase
+                    ? "mt-1.5 text-[0.82rem] leading-[1.45] text-graphite/62"
+                    : "mt-2 text-sm leading-6 text-graphite/62"
+                }
+              >
                 {item.body}
               </p>
             </div>
@@ -170,7 +192,11 @@ export function ProjectsSection() {
   const firstScale = 0.96 - secondRise * 0.05 - secondCover * 0.17;
   const firstOpacity = 1 - secondCover * 0.4;
 
-  const secondY = 760 - secondRise * 530 - secondCover * 230;
+  const isSecondProjectDense = content.projects[1].caseStudy.some(
+    (item) => item.body.length > 220,
+  );
+  const secondDenseLift = isSecondProjectDense ? 150 : 0;
+  const secondY = 760 - secondRise * 530 - secondCover * (230 + secondDenseLift);
   const secondScale = 0.98 + secondCover * 0.03;
   const secondOpacity = clamp((progress - 0.42) / 0.08);
 
