@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { SectionKicker } from "./section-kicker";
 import { useLanguage } from "./language-provider";
@@ -33,20 +34,16 @@ function ProjectStackCard({
   return (
     <article className="pointer-events-auto overflow-hidden rounded-[1.65rem] bg-paper text-ink">
       <div
-        className="project-visual relative grid h-[24rem] place-items-center overflow-hidden rounded-[1.25rem] md:h-[31rem]"
+        className="relative h-[24rem] overflow-hidden rounded-[1.25rem] bg-ink md:h-[31rem]"
       >
-        <div className="absolute inset-0 bg-black/10" />
-        <div className="relative max-w-lg px-8 text-center text-white">
-          <p className="mx-auto mb-4 w-fit rounded-full bg-violet px-3 py-1 text-[0.7rem] font-bold text-ink">
-            {project.category}
-          </p>
-          <h3 className="tight-title text-5xl font-black uppercase leading-[0.86] md:text-7xl">
-            {project.name}
-          </h3>
-          <p className="mx-auto mt-4 max-w-md text-sm font-medium leading-6 text-white/82">
-            {project.description}
-          </p>
-        </div>
+        <Image
+          src={project.imageSrc}
+          alt={`${project.name} illustration`}
+          className="object-cover object-center"
+          fill
+          sizes="(min-width: 1120px) 1080px, calc(100vw - 2rem)"
+          unoptimized
+        />
       </div>
 
       <div className="grid gap-4 px-1 py-4 md:grid-cols-[1fr_auto] md:items-start">
