@@ -13,8 +13,8 @@ export const profile = {
     "Rather than simply calling a model, I care about designing AI product loops that are testable, controllable, and iterative: starting from real scenarios, designing the right AI workflow, building runnable prototypes, and improving through feedback.",
   ],
   links: {
-    email: "mailto:hiryan@example.com",
-    linkedin: "#",
+    email: "mailto:hiryanhang@gmail.com",
+    linkedin: "tel:15958155750",
     github: "#",
     resume: "#",
   },
@@ -197,8 +197,7 @@ export const articles = [
 ];
 
 export const contactLinks = [
-  { label: "Email", value: "hiryan@example.com", href: profile.links.email },
-  { label: "LinkedIn", value: "Placeholder", href: profile.links.linkedin },
-  { label: "GitHub", value: "Placeholder", href: profile.links.github },
-  { label: "Resume", value: "Placeholder", href: profile.links.resume },
+  { label: "Email", value: "hiryanhang@gmail.com", href: profile.links.email },
+  { label: "Phone", value: "15958155750", href: profile.links.linkedin },
+  { label: "Resume", value: "Download", href: profile.links.resume },
 ];

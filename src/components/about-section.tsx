@@ -28,7 +28,7 @@ export function AboutSection() {
           <p>Placeholder / Optional</p>
           <p>Email：</p>
           <a href={profile.links.email} className="hover:text-violet">
-            hiryan@example.com
+            hiryanhang@gmail.com
           </a>
         </div>
       </div>
