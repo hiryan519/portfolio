@@ -31,7 +31,7 @@ function ProjectStackCard({
   const isExtraDenseCase = project.caseStudy.some((item) => item.body.length > 300);
 
   return (
-    <article className="overflow-hidden rounded-[1.65rem] bg-paper text-ink">
+    <article className="pointer-events-auto overflow-hidden rounded-[1.65rem] bg-paper text-ink">
       <div
         className="project-visual relative grid h-[24rem] place-items-center overflow-hidden rounded-[1.25rem] md:h-[31rem]"
       >
