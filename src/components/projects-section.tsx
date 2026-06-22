@@ -15,6 +15,7 @@ function ProjectStackCard({
   project: Project;
 }) {
   const isDenseCase = project.caseStudy.some((item) => item.body.length > 220);
+  const isExtraDenseCase = project.caseStudy.some((item) => item.body.length > 300);
 
   return (
     <article className="overflow-hidden rounded-[1.65rem] bg-paper text-ink">
@@ -68,19 +69,21 @@ function ProjectStackCard({
       <div
         id={`${project.id}-case`}
         className={`rounded-[1.25rem] border border-line bg-white ${
-          isDenseCase ? "p-4" : "p-5"
+          isExtraDenseCase ? "p-3.5" : isDenseCase ? "p-4" : "p-5"
         }`}
       >
         <div
           className={`grid md:grid-cols-3 ${
-            isDenseCase ? "gap-x-5 gap-y-3" : "gap-4"
+            isExtraDenseCase ? "gap-x-4 gap-y-2.5" : isDenseCase ? "gap-x-5 gap-y-3" : "gap-4"
           }`}
         >
           {project.caseStudy.slice(0, 6).map((item) => (
             <div key={item.title}>
               <h4
                 className={
-                  isDenseCase
+                  isExtraDenseCase
+                    ? "text-[0.86rem] font-bold text-ink"
+                    : isDenseCase
                     ? "text-[0.95rem] font-bold text-ink"
                     : "text-base font-bold text-ink"
                 }
@@ -89,7 +92,9 @@ function ProjectStackCard({
               </h4>
               <p
                 className={
-                  isDenseCase
+                  isExtraDenseCase
+                    ? "mt-1 text-[0.75rem] leading-[1.35] text-graphite/62"
+                    : isDenseCase
                     ? "mt-1.5 text-[0.82rem] leading-[1.45] text-graphite/62"
                     : "mt-2 text-sm leading-6 text-graphite/62"
                 }

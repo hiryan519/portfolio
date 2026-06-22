@@ -8,10 +8,69 @@ function clamp(value: number, min: number, max: number) {
   return Math.min(Math.max(value, min), max);
 }
 
+function CountUpNumber({
+  value,
+  active,
+}: {
+  value: string;
+  active: boolean;
+}) {
+  const [displayValue, setDisplayValue] = useState(value.replace(/\d/g, "0"));
+
+  useEffect(() => {
+    const numberMatch = value.match(/\d+/);
+
+    if (!numberMatch) {
+      return;
+    }
+
+    const target = Number(numberMatch[0]);
+    const prefix = value.slice(0, numberMatch.index);
+    const suffix = value.slice((numberMatch.index ?? 0) + numberMatch[0].length);
+    const digits = numberMatch[0].length;
+    let frameId = 0;
+
+    if (!active) {
+      frameId = requestAnimationFrame(() => {
+        setDisplayValue(`${prefix}${String(0).padStart(digits, "0")}${suffix}`);
+      });
+      return () => cancelAnimationFrame(frameId);
+    }
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (reducedMotion) {
+      frameId = requestAnimationFrame(() => setDisplayValue(value));
+      return () => cancelAnimationFrame(frameId);
+    }
+
+    const start = performance.now();
+    const duration = 820;
+
+    const update = (now: number) => {
+      const progress = clamp((now - start) / duration, 0, 1);
+      const eased = 1 - Math.pow(1 - progress, 4);
+      const current = Math.round(target * eased);
+      setDisplayValue(`${prefix}${String(current).padStart(digits, "0")}${suffix}`);
+
+      if (progress < 1) {
+        frameId = requestAnimationFrame(update);
+      }
+    };
+
+    frameId = requestAnimationFrame(update);
+
+    return () => cancelAnimationFrame(frameId);
+  }, [active, value]);
+
+  return <>{displayValue}</>;
+}
+
 export function Hero() {
   const { content } = useLanguage();
   const sectionRef = useRef<HTMLElement>(null);
   const [progress, setProgress] = useState(0);
+  const [sectionInView, setSectionInView] = useState(true);
 
   useEffect(() => {
     let frameId = 0;
@@ -26,6 +85,7 @@ export function Hero() {
         sectionRef.current.offsetHeight - window.innerHeight;
       const nextProgress = clamp(-rect.top / scrollableDistance, 0, 1);
       setProgress(nextProgress);
+      setSectionInView(rect.top < window.innerHeight && rect.bottom > 0);
     };
 
     const handleScroll = () => {
@@ -65,6 +125,7 @@ export function Hero() {
   const serviceOpacity = landingProgress * clamp(1 - serviceExitProgress * 1.25, 0, 1);
   const aboutOpacity = aboutEntryProgress;
   const aboutY = 120 - aboutEntryProgress * 160;
+  const statsActive = sectionInView && aboutOpacity > 0.45;
 
   return (
     <section ref={sectionRef} id="top" className="relative h-[340vh]">
@@ -215,7 +276,7 @@ export function Hero() {
             {content.stats.map((stat) => (
               <div key={stat.label}>
                 <p className="tight-title text-5xl font-black text-violet md:text-6xl">
-                  {stat.value}
+                  <CountUpNumber value={stat.value} active={statsActive} />
                 </p>
                 <p className="mt-2 text-xs font-semibold leading-4 text-graphite/58">
                   {stat.label}
