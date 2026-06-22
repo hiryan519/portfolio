@@ -2,7 +2,7 @@
   email: "mailto:hiryanhang@gmail.com",
   linkedin: "tel:15958155750",
   github: "#",
-  resume: "#",
+  resume: "/assets/resume.pdf",
 };
 
 export const locales = ["en", "zh"] as const;
@@ -44,7 +44,6 @@ export const i18n = {
       label: "Switch language",
     },
     hero: {
-      cardCaption: "AI Workflow / Product Loop",
     },
     servicesIntro: {
       eyebrow: "WHAT I CAN DO FOR YOU",
@@ -207,7 +206,6 @@ export const i18n = {
       label: "切换语言",
     },
     hero: {
-      cardCaption: "AI 工作流 / 产品闭环",
     },
     servicesIntro: {
       eyebrow: "WHAT I CAN DO FOR YOU",

@@ -16,7 +16,7 @@ export const profile = {
     email: "mailto:hiryanhang@gmail.com",
     linkedin: "tel:15958155750",
     github: "#",
-    resume: "#",
+    resume: "/assets/resume.pdf",
   },
 };
 

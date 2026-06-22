@@ -1,5 +1,6 @@
 ﻿"use client";
 
+import Image from "next/image";
 import { WaveBadge } from "./wave-badge";
 import { useLanguage } from "./language-provider";
 
@@ -27,7 +28,14 @@ export function ContactSection() {
       <div className="grid items-start gap-8 md:grid-cols-[0.55fr_1fr]">
         <div className="relative mx-auto h-80 w-64 overflow-visible rounded-2xl md:mx-0 md:mt-8 md:h-[25rem] md:w-[19.2rem]">
           <div className="portrait-card framer-shadow absolute inset-0 overflow-hidden rounded-2xl">
-            <div className="avatar-abstract absolute inset-x-8 bottom-0 h-[82%] rounded-t-[4rem]" />
+            <Image
+              src="/assets/profile-photo.jpg"
+              alt={content.profile.name}
+              className="object-cover object-top"
+              fill
+              sizes="(min-width: 768px) 19.2rem, 16rem"
+              unoptimized
+            />
           </div>
           <div className="absolute -bottom-6 -left-7 grid h-16 w-16 place-items-center rounded-full bg-violet text-lg font-bold text-ink md:-bottom-8 md:-left-10 md:h-24 md:w-24 md:text-2xl">
             <WaveBadge />
@@ -46,19 +54,34 @@ export function ContactSection() {
           </p>
 
           <div className="mt-6 grid gap-2">
-            {content.contact.links.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="flex items-center justify-between rounded-full border border-line bg-white px-4 py-3 text-sm text-graphite/64 hover:border-violet hover:text-violet"
-              >
-                <span>{link.label}</span>
-                <span className="flex items-center gap-1.5">
-                  {"isDownload" in link && link.isDownload ? <DownloadIcon /> : null}
-                  {link.value}
-                </span>
-              </a>
-            ))}
+            {content.contact.links.map((link) => {
+              const className =
+                "flex items-center justify-between rounded-full border border-line bg-white px-4 py-3 text-sm text-graphite/64";
+
+              if ("isDownload" in link && link.isDownload) {
+                return (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    download
+                    className={`${className} hover:border-violet hover:text-violet`}
+                  >
+                    <span>{link.label}</span>
+                    <span className="flex items-center gap-1.5">
+                      <DownloadIcon />
+                      {link.value}
+                    </span>
+                  </a>
+                );
+              }
+
+              return (
+                <div key={link.label} className={className}>
+                  <span>{link.label}</span>
+                  <span>{link.value}</span>
+                </div>
+              );
+            })}
           </div>
 
           <a

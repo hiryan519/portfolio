@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "./language-provider";
 import { WaveBadge } from "./wave-badge";
@@ -264,10 +265,14 @@ export function Hero() {
                 backfaceVisibility: "hidden",
               }}
             >
-              <div className="avatar-abstract absolute inset-x-8 bottom-0 h-[80%] rounded-t-[4rem]" />
-              <div className="absolute bottom-5 left-5 right-5 rounded-full bg-white/72 px-3 py-2 text-[0.65rem] font-semibold text-ink backdrop-blur">
-                {content.hero.cardCaption}
-              </div>
+              <Image
+                src="/assets/profile-photo.jpg"
+                alt={content.profile.name}
+                className="object-cover object-top"
+                fill
+                sizes="(min-width: 768px) 18.4rem, 13.2rem"
+                unoptimized
+              />
             </div>
             <div
               className="project-visual absolute inset-0 overflow-hidden rounded-2xl"
@@ -276,13 +281,14 @@ export function Hero() {
                 transform: "rotateY(180deg)",
               }}
             >
-              <div className="absolute inset-6 rounded-xl border border-white/20 bg-white/20 backdrop-blur" />
-              <div className="absolute left-8 right-8 top-12 h-24 rounded-xl bg-white/70" />
-              <div className="absolute bottom-10 left-8 right-8 grid grid-cols-3 gap-3">
-                <span className="h-20 rounded-xl bg-white/50" />
-                <span className="h-20 rounded-xl bg-white/30" />
-                <span className="h-20 rounded-xl bg-white/60" />
-              </div>
+              <Image
+                src="/assets/profile-photo.jpg"
+                alt={content.profile.name}
+                className="object-cover object-top"
+                fill
+                sizes="(min-width: 768px) 18.4rem, 13.2rem"
+                unoptimized
+              />
             </div>
             <div
               className="absolute -bottom-6 -left-7 z-30 grid h-16 w-16 place-items-center rounded-full bg-violet text-lg font-bold text-ink shadow-card md:-bottom-8 md:-left-10 md:h-24 md:w-24 md:text-2xl"
