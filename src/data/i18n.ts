@@ -160,11 +160,11 @@ export const i18n = {
       eyebrow: "Let's work together",
       title: "Contact",
       description:
-        "If you want to learn more about my AI product projects, prototype thinking, or case reviews, feel free to reach out.",
+        "If you'd like to learn more about me, feel free to reach out anytime.",
       action: "Send email",
       links: [
         { label: "Email", value: "hiryanhang@gmail.com", href: links.email },
-        { label: "Phone", value: "15958155750", href: links.linkedin },
+        { label: "Phone / WeChat", value: "15958155750", href: links.linkedin },
         { label: "Resume", value: "Download", href: links.resume, isDownload: true },
       ],
     },
@@ -323,11 +323,11 @@ export const i18n = {
       eyebrow: "Let's work together",
       title: "联系我",
       description:
-        "如果你想进一步了解我的 AI 产品项目、原型实践或案例复盘，欢迎联系我。",
+        "如果你想进一步了解我，欢迎随时联系",
       action: "发送邮件",
       links: [
         { label: "Email", value: "hiryanhang@gmail.com", href: links.email },
-        { label: "电话", value: "15958155750", href: links.linkedin },
+        { label: "电话/微信", value: "15958155750", href: links.linkedin },
         { label: "简历", value: "下载", href: links.resume, isDownload: true },
       ],
     },
