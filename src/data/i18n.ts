@@ -91,7 +91,7 @@ export const i18n = {
       eyebrow: "Featured projects",
       title: "AI product projects",
       description:
-        "These projects show how I understand RAG, Agents, Prompt design, AI product evaluation, and product loops through real practice.",
+        "Starting from problems and pain points I encountered myself, and alongside my AI learning journey, I independently vibe coded and completed the following projects:",
     },
     projects: [
       {
@@ -143,10 +143,9 @@ export const i18n = {
         "A quick overview of how I think about AI product work, what this portfolio demonstrates, and where interviewers can start.",
     },
     faq: [
-      { question: "Why are you moving into AI product management?", answer: "Because AI products are not only about connecting models. They require redesigning information flows, decision flows, and human-AI collaboration. This direction needs product judgment, prototyping ability, and continuous validation." },
-      { question: "What capabilities does this portfolio highlight?", answer: "It highlights RAG, Agent workflows, Prompt design, AI output evaluation, Tool Calling, and fast prototyping with Codex, Claude Code, and Cursor." },
-      { question: "How do the projects go beyond simple model calls?", answer: "Each project explains the problem, target users, existing alternatives, AI workflow, MVP scope, validation method, failure boundaries, and key learnings." },
-      { question: "What should interviewers look at first?", answer: "Start with the project section, then review the capability section and About section. The projects show how I apply AI capabilities to real task scenarios." },
+      { question: "Why are you transitioning into AI product management?", answer: "AI is transforming the traditional internet industry. In the past, product validation cycles were long; today, product managers can use large-model capabilities to quickly vibe code interactive versions and validate product value in real scenarios. I want to move into AI because it not only improves the efficiency of validating product ideas, but also places higher demands on scenario judgment, technical understanding, evaluation awareness, and system design. These are the directions I want to develop in over the long term." },
+      { question: "What capabilities does this portfolio highlight?", answer: "These two projects mainly demonstrate my ability to narrow scenarios, design AI product workflows, handle model boundaries, and think in terms of evaluation. Refine helped me understand the issues Agents face in information filtering, quality judgment, writing integration, and LLM-as-Judge evaluation. Revive led me to design a complete loop from content import to structured output around RAG, trustworthy citations, task reuse, and preference memory. Compared with simply writing PRDs, I care more about placing AI capabilities into real workflows and validating value through runnable products." },
+      { question: "Are these projects only calling large-model capabilities?", answer: "Calling a large model is only the underlying capability. The real product challenge is how to place the model inside a controllable, trustworthy, and verifiable workflow. Refine is not focused on \"letting a model write daily reports,\" but on using a judging Agent and evaluation system to filter low-quality information while handling decision conflicts across multiple Agent modules. Revive is also not simply about \"uploading materials for AI to summarize.\" It uses RAG citations to keep evidence trustworthy, then applies task preference memory so outputs continue to fit the user's habits while avoiding memory contaminating content evidence." },
     ],
     articlesIntro: {
       title: "Product thinking",
@@ -256,7 +255,7 @@ export const i18n = {
       eyebrow: "Featured projects",
       title: "AI 产品项目",
       description:
-        "这些项目展示我对 RAG、Agent、Prompt 设计、AI 产品评估和产品闭环的真实理解。",
+        "我从自身实际遇到的问题和痛点出发，结合AI知识学习进程，独立vibe coding并完成了如下项目：",
     },
     projects: [
       {
@@ -308,10 +307,9 @@ export const i18n = {
         "快速说明我如何理解 AI 产品工作、这个作品集展示了什么，以及面试官可以从哪里开始看。",
     },
     faq: [
-      { question: "为什么转向 AI 产品经理？", answer: "因为 AI 产品不只是接入模型，而是要重新设计信息流、决策流和人机协作方式。这个方向需要产品判断、原型能力和持续验证。" },
-      { question: "这个作品集重点展示什么能力？", answer: "重点展示 RAG、Agent 工作流、Prompt 设计、AI 输出评估、Tool Calling，以及使用 Codex、Claude Code、Cursor 快速构建原型的能力。" },
-      { question: "这些项目如何超越简单模型调用？", answer: "每个项目都会说明问题背景、目标用户、现有替代方案、AI 工作流、MVP 范围、验证方式、失败边界和关键复盘。" },
-      { question: "面试官应该先看哪里？", answer: "建议先看项目作品，再看能力结构和关于我。项目部分展示了我如何把 AI 能力落到真实任务场景中。" },
+      { question: "为什么要转行AI产品经理？", answer: "AI正在革新传统互联网行业，之前的产品验证链路较长，而如今产品经理可以借助大模型能力，快速Vibe Coding落地可交互版本，用真实场景验证产品价值。我希望进入 AI 方向，是因为它不仅提升了产品 idea 的验证效率，并且AI 产品更考验场景判断、技术理解、评测意识和系统设计能力，这正是我希望长期发展的方向。" },
+      { question: "这个作品集重点展示什么能力？", answer: "这两个项目主要体现了我的场景收敛、AI 产品链路设计、模型边界处理和评测意识。Refine 让我理解 Agent 在信息筛选、质量判断、写作整合和 LLM-as-Judge 评测中的问题；Revive 则让我围绕 RAG、引用可信、任务复用和偏好记忆，设计一个从内容导入到结构化输出的完整闭环。相比单纯写 PRD，我更关注如何把 AI 能力放进真实工作流，并通过可运行产品验证价值。" },
+      { question: "项目只是单纯调用大模型能力吗？", answer: "调用大模型只是底层能力，真正的产品难点在于如何把模型放进可控、可信、可验证的工作流里。Refine 的重点不是“让模型写日报”，而是通过判断 Agent 和评测体系筛掉低质信息，并处理多模块 Agent 的决策冲突。Revive 的重点也不是“上传资料让 AI 总结”，而是通过 RAG 引用机制保证依据可信，再用任务偏好记忆让结果持续贴合用户的输出习惯，同时避免记忆污染内容证据。" },
     ],
     articlesIntro: {
       title: "产品思考",
