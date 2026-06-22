@@ -294,7 +294,7 @@ export function Hero() {
             pointerEvents: lowerTextOpacity < 0.15 ? "none" : "auto",
           }}
         >
-          <p className="mt-8 max-w-md text-sm leading-6 text-graphite/58 md:text-base">
+          <p className="mt-8 max-w-md whitespace-pre-line text-sm leading-6 text-graphite/58 md:text-base">
             {content.profile.intro}
           </p>
 

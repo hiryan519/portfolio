@@ -168,13 +168,13 @@ export const i18n = {
   zh: {
     profile: {
       name: "Hiryan Hang",
-      displayName: "Yichen Huang",
+      displayName: "黄逸晨",
       role: "AI 产品经理",
       headlineLeft: "产品",
       headlineRight: "经理",
       intro:
-        "我关注如何把模糊的 AI 机会转化为真实场景、产品流程、可运行原型和可复盘案例。",
-      heroTags: ["RAG 产品", "Agent 工作流", "Prompt", "Vibe Coding"],
+        "从真实业务痛点出发，挖掘潜在AI能力需求\n判断值不值得做、能力怎么落地、效果怎么验证",
+      heroTags: ["RAG与记忆系统", "Multi-Agent", "LLM测评体系", "Vibe Coding实践"],
       about: [
         "我是一名从传统互联网产品转向 AI 产品方向的产品经理。",
         "我正在通过真实项目建立 AI 产品能力，包括 RAG、Agent 工作流、Prompt 设计、AI 产品评估和 Vibe Coding。",
