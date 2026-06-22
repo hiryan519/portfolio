@@ -21,8 +21,8 @@ export const i18n = {
       heroTags: ["RAG", "Agent", "Prompt", "Vibe Coding"],
       about: [
         "I am a product manager transitioning from traditional internet products into AI product management.",
-        "I am building hands-on experience through real projects around RAG, Agent workflows, Prompt design, AI product evaluation, and Vibe Coding.",
-        "Rather than simply calling a model, I care about designing AI product loops that are testable, controllable, and iterative: starting from real scenarios, designing the right AI workflow, building runnable prototypes, and improving through feedback.",
+        "I am building practical AI product capabilities through real projects, including AI scenario judgment, Agent workflow design, and model evaluation and optimization.",
+        "Rather than simply calling a model, I care more about how to land an AI product that is verifiable, controllable, and iterative, then keep improving it through testing and feedback.",
       ],
       links,
     },
@@ -47,27 +47,32 @@ export const i18n = {
       cardCaption: "AI Workflow / Product Loop",
     },
     servicesIntro: {
-      eyebrow: "What I can do for you",
-      titleLines: ["AI product", "capabilities"],
+      eyebrow: "WHAT I CAN DO FOR YOU",
+      titleLines: ["AI product", "capability model"],
       description:
-        "I break down AI scenarios from a product manager's perspective, connecting capability design, prototype execution, validation, and review in one loop.",
+        "I break down business scenarios from a product manager's perspective, judge AI feasibility, turn solutions into product workflows, and close the loop through evaluation and iteration.",
     },
     services: [
       {
-        title: "AI Product Definition",
-        items: ["Problem definition and scenario breakdown", "Target users and task context", "PRD / prototype / MVP scope", "Validation metrics and iteration path"],
+        title: "AI Technical Understanding & Scenario Judgment",
+        items: [
+          "Understand the capability boundaries and limitations of mainstream large models, and judge which business scenarios are suitable for AI.",
+          "Combine user research and competitive analysis to identify where AI can replace or enhance real business workflows, then turn the judgment into executable product solutions.",
+        ],
       },
       {
-        title: "RAG Product Design",
-        items: ["Knowledge retrieval workflow", "Chunking and recall strategy", "AI summarization and source citation", "Task-triggered knowledge reuse"],
+        title: "AI Product Planning & Delivery",
+        items: [
+          "Translate scenario judgment into concrete AI workflow design, choosing the right solution based on task complexity.",
+          "Break down requirements, write PRDs, build prototypes, and use Vibe Coding tools to quickly validate ideas and iterate product form.",
+        ],
       },
       {
-        title: "Agent Workflow",
-        items: ["Task planning", "Tool Calling", "Boundary control", "Failure recovery"],
-      },
-      {
-        title: "Vibe Coding",
-        items: ["Codex / Claude Code / Cursor", "Fast prototype building", "Demo deployment", "Improving ideas through real feedback"],
+        title: "Model Evaluation & Bad Case Optimization",
+        items: [
+          "Design quantitative evaluation systems for AI output and use LLM-as-Judge to improve output reliability.",
+          "Analyze Bad Cases, trace root causes, locate the problem, and iterate with targeted improvements.",
+        ],
       },
     ],
     about: {
@@ -75,8 +80,12 @@ export const i18n = {
     },
     stats: [
       { value: "02", label: "Featured AI Projects" },
-      { value: "05", label: "Core Capability Areas" },
-      { value: "10+", label: "Case Review Dimensions" },
+      { value: "05+", label: "Version Iterations" },
+      { value: "30+", label: "Evaluation Samples" },
+    ],
+    aboutContacts: [
+      { label: "Call Today", value: "15958155750" },
+      { label: "Email", value: "hiryanhang@gmail.com" },
     ],
     projectsIntro: {
       eyebrow: "Featured projects",
@@ -173,12 +182,12 @@ export const i18n = {
       headlineLeft: "产品",
       headlineRight: "经理",
       intro:
-        "从真实业务痛点出发，挖掘潜在AI能力需求\n判断值不值得做、能力怎么落地、效果怎么验证",
+        "从真实业务痛点出发，挖掘潜在AI能力需求\n判断需求是否值得做、是否能落地、落地效果如何验证",
       heroTags: ["RAG与记忆系统", "Multi-Agent", "LLM测评体系", "Vibe Coding实践"],
       about: [
-        "我是一名从传统互联网产品转向 AI 产品方向的产品经理。",
-        "我正在通过真实项目建立 AI 产品能力，包括 RAG、Agent 工作流、Prompt 设计、AI 产品评估和 Vibe Coding。",
-        "相比单纯调用模型，我更关注如何设计一个可验证、可控制、可迭代的 AI 产品闭环：从真实场景出发，设计合理的 AI 工作流，构建可运行原型，并通过测试和反馈持续优化。",
+        "我是一名从传统互联网产品转向AI产品方向的产品经理。",
+        "我正在通过真实项目建立AI产品能力，包括 AI场景判断、Agent工作流设计、模型效果评估调优等。",
+        "相比单纯调用模型，我更关注如何设落地一个可验证、可控制、可迭代的AI产品，并通过测试和反馈持续优化。",
       ],
       links,
     },
@@ -203,27 +212,32 @@ export const i18n = {
       cardCaption: "AI 工作流 / 产品闭环",
     },
     servicesIntro: {
-      eyebrow: "What I can do for you",
-      titleLines: ["AI 产品", "能力结构"],
+      eyebrow: "WHAT I CAN DO FOR YOU",
+      titleLines: ["AI产品", "能力模型"],
       description:
-        "我从产品经理视角拆解 AI 场景，把能力设计、原型执行、验证反馈和项目复盘连接成一个闭环。",
+        "从产品经理视角拆解业务场景，完成AI可行性判断、产品方案落地、效果测评迭代，形成完整闭环。",
     },
     services: [
       {
-        title: "AI 产品定义",
-        items: ["问题定义与场景拆解", "目标用户与任务背景", "PRD / 原型 / MVP 范围", "验证指标与迭代路径"],
+        title: "AI技术理解及场景判断能力",
+        items: [
+          "理解主流大模型的能力边界与局限，判断哪些业务场景适合引入AI；",
+          "结合用户调研与竞品分析，识别真实业务流程中可被AI能力替代或增强的环节，输出可执行的产品方案。",
+        ],
       },
       {
-        title: "RAG 产品设计",
-        items: ["知识检索工作流", "内容切分与召回策略", "AI 总结与来源引用", "任务触发式知识复用"],
+        title: "AI产品落地与规划能力",
+        items: [
+          "将场景判断转化为具体的AI工作流设计，根据任务复杂度选择最优方案；",
+          "完成需求拆解、PRD撰写与原型搭建，并通过Vibe Coding工具快速验证想法、迭代产品形态。",
+        ],
       },
       {
-        title: "Agent 工作流",
-        items: ["任务规划", "Tool Calling", "边界控制", "失败恢复"],
-      },
-      {
-        title: "Vibe Coding",
-        items: ["Codex / Claude Code / Cursor", "快速构建原型", "Demo 部署", "通过真实反馈改进想法"],
+        title: "模型效果测评及Bad case调优能力",
+        items: [
+          "设计AI输出的量化评估体系，结合LLM-as-Judge保障输出准确度；",
+          "对Bad Case进行归因分析，定位问题针对性迭代。",
+        ],
       },
     ],
     about: {
@@ -231,8 +245,12 @@ export const i18n = {
     },
     stats: [
       { value: "02", label: "AI 项目作品" },
-      { value: "05", label: "核心能力方向" },
-      { value: "10+", label: "案例复盘维度" },
+      { value: "05+", label: "版本迭代" },
+      { value: "30+", label: "测评数据集" },
+    ],
+    aboutContacts: [
+      { label: "电话", value: "15958155750" },
+      { label: "邮箱", value: "hiryanhang@gmail.com" },
     ],
     projectsIntro: {
       eyebrow: "Featured projects",

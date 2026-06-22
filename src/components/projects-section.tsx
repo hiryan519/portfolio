@@ -219,7 +219,7 @@ export function ProjectsSection() {
     <section
       ref={sectionRef}
       id="projects"
-      className="relative -mt-20 h-[470vh] bg-paper text-ink"
+      className="relative mt-28 h-[470vh] bg-paper text-ink"
     >
       <div className="sticky top-0 min-h-screen overflow-hidden">
         <div className="relative min-h-screen pt-16">

@@ -71,6 +71,7 @@ export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const [progress, setProgress] = useState(0);
   const [sectionInView, setSectionInView] = useState(true);
+  const [openServiceIndex, setOpenServiceIndex] = useState(0);
 
   useEffect(() => {
     let frameId = 0;
@@ -129,6 +130,7 @@ export function Hero() {
 
   return (
     <section ref={sectionRef} id="top" className="relative h-[340vh]">
+      <span id="about" className="absolute left-0 top-[150vh]" aria-hidden="true" />
       <div className="sticky top-0 min-h-screen overflow-hidden bg-paper">
         <div
           className="absolute inset-0 bg-ink transition-opacity"
@@ -176,12 +178,49 @@ export function Hero() {
               {content.services.map((service, index) => (
                 <div
                   key={service.title}
-                  className="grid grid-cols-[1fr_auto] items-center gap-8 py-5"
+                  className="py-5"
                 >
-                  <h3 className="tight-title text-3xl font-black uppercase leading-none text-paper md:text-4xl">
-                    {index + 1}. {service.title}
-                  </h3>
+                  <button
+                    type="button"
+                    className="service-toggle grid w-full grid-cols-[1fr_auto] items-center gap-8 text-left"
+                    onClick={() =>
+                      setOpenServiceIndex((current) =>
+                        current === index ? -1 : index,
+                      )
+                    }
+                    aria-expanded={openServiceIndex === index}
+                  >
+                    <h3
+                      className={`tight-title text-3xl font-black uppercase leading-none transition-colors duration-300 md:text-4xl ${
+                        openServiceIndex === index
+                          ? "text-violet"
+                          : "text-paper"
+                      }`}
+                    >
+                      {index + 1}. {service.title}
+                    </h3>
                   <span className="text-3xl text-paper">⌃</span>
+                  </button>
+                  <div
+                    className={`grid transition-[grid-template-rows,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                      openServiceIndex === index
+                        ? "grid-rows-[1fr] opacity-100"
+                        : "grid-rows-[0fr] opacity-0"
+                    }`}
+                  >
+                    <div className="min-h-0 overflow-hidden">
+                      <div className="max-w-2xl space-y-4 pt-5 text-sm leading-6 text-paper/76 md:text-base md:leading-7">
+                        {service.items.map((item) => (
+                          <p key={item} className="flex gap-3">
+                            <span className="mt-1.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full border border-violet text-[0.62rem] font-bold leading-none text-violet">
+                              ✓
+                            </span>
+                            <span>{item}</span>
+                          </p>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
@@ -194,7 +233,7 @@ export function Hero() {
               opacity: introOpacity,
             }}
           >
-            <p className="mb-1 text-[0.8rem] font-bold uppercase tracking-[-0.04em] text-graphite/72 md:text-[1.65rem]">
+            <p className="hero-display-name mb-1 text-[0.8rem] font-bold uppercase tracking-[-0.04em] text-graphite/72 md:text-[1.65rem]">
               {content.profile.displayName}
             </p>
             <h1 className="tight-title text-[clamp(3.2rem,10vw,8.6rem)] font-black uppercase leading-[0.78] text-ink">
@@ -258,7 +297,6 @@ export function Hero() {
         </div>
 
         <div
-          id="about"
           className="pointer-events-none absolute left-0 top-1/2 z-10 w-[min(56vw,42rem)] text-left text-ink"
           style={{
             opacity: aboutOpacity,
@@ -280,6 +318,19 @@ export function Hero() {
                 </p>
                 <p className="mt-2 text-xs font-semibold leading-4 text-graphite/58">
                   {stat.label}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 grid max-w-2xl gap-6 sm:grid-cols-3">
+            {content.aboutContacts.map((item) => (
+              <div key={item.label}>
+                <p className="text-base font-bold text-ink md:text-lg">
+                  {item.label}：
+                </p>
+                <p className="mt-1 text-base leading-7 text-graphite/72 md:text-lg">
+                  {item.value}
                 </p>
               </div>
             ))}
