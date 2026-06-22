@@ -96,6 +96,7 @@ export const i18n = {
         primaryAction: "View Case",
         secondaryAction: "View Demo",
         demoUrl: "#",
+        githubUrl: "https://github.com/hiryan519/revive.git",
         caseStudy: [
           { title: "Problem", body: "Many knowledge workers save articles, cases, methods, and experience-based content for years, but when writing proposals, doing retrospectives, or preparing reports, they still need to search, reread, filter, and summarize everything manually. The problem is not only that content is hard to find; saved materials rarely turn into directly usable work output at the moment a real task appears." },
           { title: "Target Users", body: "Product managers, operators, marketers, consultants, and content workers who keep long-term collections and need to turn external information into proposals, reviews, reports, planning materials, or communication drafts." },
@@ -116,6 +117,7 @@ export const i18n = {
         primaryAction: "View Case",
         secondaryAction: "View Demo",
         demoUrl: "#",
+        githubUrl: "https://github.com/hiryan519/refine.git",
         caseStudy: [
           { title: "Problem", body: "AI product managers need to continuously track model, product, technology, and business updates, but daily information sources mix promotional content, SEO articles, and repetitive summaries. The signal-to-noise ratio is low, and traditional reading often leads to information being consumed and forgotten instead of becoming reusable product judgment." },
           { title: "Target Users", body: "AI product managers, operators, and knowledge workers who need to follow AI industry updates every day and turn external information into competitor observations, product judgment, and topic inputs." },
@@ -250,6 +252,7 @@ export const i18n = {
         primaryAction: "查看案例",
         secondaryAction: "查看 Demo",
         demoUrl: "#",
+        githubUrl: "https://github.com/hiryan519/revive.git",
         caseStudy: [
           { title: "问题背景", body: "很多知识工作者长期收藏文章、案例、方法论和经验内容，但真正写方案、做复盘、准备汇报时，仍然需要重新翻找、阅读、筛选和总结。问题不只是“找不到内容”，而是历史收藏很难在具体任务发生时转化为可直接使用的工作结果。" },
           { title: "目标用户", body: "有长期收藏习惯，并需要把外部信息转化为方案、复盘、汇报、策划或沟通材料的产品经理、运营人员、市场人员、咨询顾问和内容工作者。" },
@@ -270,6 +273,7 @@ export const i18n = {
         primaryAction: "查看案例",
         secondaryAction: "查看Demo",
         demoUrl: "#",
+        githubUrl: "https://github.com/hiryan519/refine.git",
         caseStudy: [
           { title: "问题背景", body: "AI 产品经理需要持续跟踪模型、产品、技术和商业动态，但日常信息源中软文、SEO 内容和重复转述混杂，信号噪声比低。传统阅读方式容易“看完即忘”，难以沉淀为可复用的产品判断。" },
           { title: "目标用户", body: "需要每日跟踪 AI 行业动态，并将外部信息转化为竞品观察、产品判断和选题输入的 AI 产品经理、运营人员与知识工作者。" },
