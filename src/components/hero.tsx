@@ -266,7 +266,7 @@ export function Hero() {
               }}
             >
               <Image
-                src="/assets/profile-photo.jpg"
+                src="/assets/profile-photo-v2.jpg"
                 alt={content.profile.name}
                 className="object-cover object-top"
                 fill
@@ -282,7 +282,7 @@ export function Hero() {
               }}
             >
               <Image
-                src="/assets/profile-photo.jpg"
+                src="/assets/profile-photo-v2.jpg"
                 alt={content.profile.name}
                 className="object-cover object-top"
                 fill

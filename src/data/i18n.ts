@@ -127,7 +127,7 @@ export const i18n = {
         secondaryAction: "View Demo",
         demoUrl: "#",
         githubUrl: "https://github.com/hiryan519/refine.git",
-        imageSrc: "/assets/project-refine.png",
+        imageSrc: "/assets/project-refine-v2.png",
         caseStudy: [
           { title: "Problem", body: "AI product managers need to continuously track model, product, technology, and business updates, but daily information sources mix promotional content, SEO articles, and repetitive summaries. The signal-to-noise ratio is low, and traditional reading often leads to information being consumed and forgotten instead of becoming reusable product judgment." },
           { title: "Target Users", body: "AI product managers, operators, and knowledge workers who need to follow AI industry updates every day and turn external information into competitor observations, product judgment, and topic inputs." },
@@ -291,7 +291,7 @@ export const i18n = {
         secondaryAction: "查看Demo",
         demoUrl: "#",
         githubUrl: "https://github.com/hiryan519/refine.git",
-        imageSrc: "/assets/project-refine.png",
+        imageSrc: "/assets/project-refine-v2.png",
         caseStudy: [
           { title: "问题背景", body: "AI 产品经理需要持续跟踪模型、产品、技术和商业动态，但日常信息源中软文、SEO 内容和重复转述混杂，信号噪声比低。传统阅读方式容易“看完即忘”，难以沉淀为可复用的产品判断。" },
           { title: "目标用户", body: "需要每日跟踪 AI 行业动态，并将外部信息转化为竞品观察、产品判断和选题输入的 AI 产品经理、运营人员与知识工作者。" },

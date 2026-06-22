@@ -29,7 +29,7 @@ export function ContactSection() {
         <div className="relative mx-auto h-80 w-64 overflow-visible rounded-2xl md:mx-0 md:mt-8 md:h-[25rem] md:w-[19.2rem]">
           <div className="portrait-card framer-shadow absolute inset-0 overflow-hidden rounded-2xl">
             <Image
-              src="/assets/profile-photo.jpg"
+              src="/assets/profile-photo-v2.jpg"
               alt={content.profile.name}
               className="object-cover object-top"
               fill
